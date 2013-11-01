@@ -1,4 +1,4 @@
-@echo off
+rem Author: Hauptmech <hauptmech@gmail.com>, Oct 2013 
 rem Adapted from http://sfalla.wordpress.com/2008/10/06/tortoise-svn-client-side-hook-scripts/
 rem
 rem TortoiseSVN Client Side pre-commit hook script
@@ -11,7 +11,7 @@ rem
 rem script <Path> <Depth> <MessageFile> <Cwd>
 
 rem setlocal
-
+@echo off
 set tsvnPath=%1
 set tsvnDepth=%2
 set tsvnMsgFile=%3

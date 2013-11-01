@@ -1,3 +1,11 @@
+/* Author: Hauptmech <hauptmech@gmail.com>, Oct 2013 
+
+Add patterns for deletion or renaming as needed.
+The renumbering is limited to single digits. If you need to you can change this
+by modifying the slicing in the 'mv' command at line 82.
+
+*/
+
 require('shelljs/global');
 var fs = require('fs');
 var os = require('os');
