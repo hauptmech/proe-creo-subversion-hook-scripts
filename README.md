@@ -15,8 +15,8 @@ Installation
 -----------
 
 * Put the files (either bat or js folder) somewhere accessible (C:\Program Files)
-* If you are using the js script, install nodejs http://nodejs.org
-* Add that folder to the system PATH variable
+* If you are using the js script, install nodejs http://nodejs.org and add that 
+  folder to the system PATH variable
 * Add the ProEsvnPrep.bat file as a hook script for both pre-commit and pre-update.
 
 Usage
@@ -31,6 +31,10 @@ You should close ProE / Creo before updating or commiting your files.
 ISSUES
 ------
 
+The js script will create a couple debug files in your home folder. 
+  %UserProfile%\Tortoise_Hook_Log.txt
+  %UserProfile%\ProEsvnPrep_log.txt
+  
 Most issues I have had with these scripts involved either an old version of ProE
 not removing it's entry from the PATH variable (causing the wrong purge.bat to be
 called) or an incorrect PATH variable set for the scripts.

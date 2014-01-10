@@ -10,7 +10,7 @@ require('shelljs/global');
 var fs = require('fs');
 var os = require('os');
 
-logfile = "E:\\ProEsvnPrep.txt";
+logfile = process.env.USERPROFILE + "/ProEsvnPrep_log.txt";
 //Files to delete
 delete_pattern = [	
       /\.crc\.[^\/]+$/,

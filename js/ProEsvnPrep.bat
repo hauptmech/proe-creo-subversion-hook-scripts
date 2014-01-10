@@ -22,10 +22,11 @@ rem can be referenced correctly, as the script is run from a different working f
 set tsvnHookScriptPath=%~dp0
 set tsvnPostCommitScript=ProEsvnPrep.js
 
-rem echo Path %tsvnPath% >> c:\tsvnLog.txt
-rem echo Depth %tsvnDepth% >> c:\tsvnLog.txt
-rem echo MsgFile %tsvnMsgFile% >> c:\tsvnLog.txt
-rem echo Cwd %tsvnCwd% >> c:\tsvnLog.txt
+echo "== Log of tortoise hook call for proe/creo hook script ==" > %UserProfile%\Tortoise_Hook_Log.txt
+echo Path %tsvnPath% >> %UserProfile%\Tortoise_Hook_Log.txt
+echo Depth %tsvnDepth% >> %UserProfile%\Tortoise_Hook_Log.txt
+echo MsgFile %tsvnMsgFile% >> %UserProfile%\Tortoise_Hook_Log.txt
+echo Cwd %tsvnCwd% >> %UserProfile%\Tortoise_Hook_Log.txt
 
 rem Here we are useing a node.js script. http://nodejs.org
 rem We make sure output is directed to the console with >CON
