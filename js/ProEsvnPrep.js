@@ -7,6 +7,7 @@ by modifying the slicing in the 'mv' command at line 82.
 */
 
 require('shelljs/global');
+
 var fs = require('fs');
 var os = require('os');
 
@@ -29,9 +30,6 @@ rename_pattern = [
     /\.asm\.[^\/]+$/,
     /\.drw\.[^\/]+$/];
 
-//Sequence of numbers to rename (double digits require changing mv command below)			
-rename_numbers = [ /2$/,/3$/,/4$/,/5$/,/6$/,/7$/,/8$/,/9$/];
-
 function printlist(list) {
     var j=0;
   while (j < list.length){console.log(list[j]);j++;}
@@ -43,7 +41,6 @@ function filterlist(list, regex) {
 
 // Grab the file which svn has stuffed with directories to process
 listfile = process.argv[2];
-
 
 //Check to see if we were called correctly
 if (typeof listfile == 'undefined' || !test('-e',listfile)){ 
@@ -72,13 +69,24 @@ else{
       });
     }
     
+    files=ls('-R',svn_dirs[i]+"/*");
+
     console.log("===Renaming===\n");
     // Progressively rename files from *.N to *.1
-    for (var j=0;j<rename_pattern.length;j++)
-      for (var k=0;k<rename_numbers.length;k++){
-        sublist = filterlist(filterlist(files,rename_pattern[j]),rename_numbers[k]);
+    for (var j=0;j<rename_pattern.length;j++){
+		// Start with single digit files
+        sublist = filterlist(filterlist(files,rename_pattern[j]),/\.[1-9]$/);
+        sublist.sort()
         sublist.forEach(function(filename){
-          mv('-f',filename,filename.slice(0,-1)+"1");
+          mv('-f',filename,filename.slice(0,-2)+"1");
+        });
+        printlist(sublist);
+        fs.appendFileSync(logfile,sublist);
+		// Do double digit files if they exist
+        sublist = filterlist(filterlist(files,rename_pattern[j]),/\.[1-9][0-9]$/);
+        sublist.sort()
+        sublist.forEach(function(filename){
+          mv('-f',filename,filename.slice(0,-2)+"1");
         });
         printlist(sublist);
         fs.appendFileSync(logfile,sublist);
