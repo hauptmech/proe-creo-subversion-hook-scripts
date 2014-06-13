@@ -78,7 +78,7 @@ else{
         sublist = filterlist(filterlist(files,rename_pattern[j]),/\.[1-9]$/);
         sublist.sort()
         sublist.forEach(function(filename){
-          mv('-f',filename,filename.slice(0,-2)+"1");
+          mv('-f',filename,filename.slice(0,-2)+".1");
         });
         printlist(sublist);
         fs.appendFileSync(logfile,sublist);
@@ -86,7 +86,7 @@ else{
         sublist = filterlist(filterlist(files,rename_pattern[j]),/\.[1-9][0-9]$/);
         sublist.sort()
         sublist.forEach(function(filename){
-          mv('-f',filename,filename.slice(0,-2)+"1");
+          mv('-f',filename,filename.slice(0,-2)+".1");
         });
         printlist(sublist);
         fs.appendFileSync(logfile,sublist);
